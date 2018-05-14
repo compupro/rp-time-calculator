@@ -12,7 +12,7 @@ function setSettings(){
 function setTime(){
 	var display = document.getElementById("timeDisplay");
 	var rpUnixTime = new Date(Math.floor((365/daysPerYear)*((Date.now()/1000)-lastDateChange)+lastDateEpoch)*1000);
-	display.innerHTML = rpUnixTime.toGMTString();
+	display.innerHTML = "The RP date and time is<br>" + rpUnixTime.toGMTString();
 }
 
 setInterval(function(){setTime()}, 1);

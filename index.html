@@ -1,0 +1,56 @@
+<head>
+	<title>RP Time Calculator</title>
+	<style>
+			body {
+				font-family: sans-serif;
+			}
+			
+			#displayContainer {
+				display:flex;
+				justify-content:center;
+				align-items:center;
+				height:100%;
+				font-size: 400%;
+			}
+			
+			#settings {
+				position: fixed;
+				top: 2%;
+				left: 2%;
+				width: 30%
+			}
+			
+			input {
+				position: absolute;
+				right: 0;
+			}
+			
+			.option {
+				margin-bottom: 5px;
+			}
+		</style>
+	<script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+	<div id="displayContainer">
+		<div id="timeDisplay">this is where the RP time should display</div>
+	</div>
+	
+	<div id="settings"><div class="option">
+			Days per year:
+			<input type="number" id="daysPerYear" value="30"></input><br>
+		</div>
+		
+		<div class="option">
+			Last RP date change:
+			<input type="date" id="lastDateChange" value="2018-06-01"></input><br>
+		</div>
+		
+		<div class="option">
+			What the RP date changed to:
+			<input type="date" id="lastDateEpoch" value="2003-01-01"></input><br>
+		</div>
+		
+		<input type="button" onclick="setSettings();" value="Set Settings"></input>
+	</div>
+</body>

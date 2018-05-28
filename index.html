@@ -13,7 +13,7 @@
 			}
 			
 			#timeDisplay {
-				font-size: 300%;
+				font-size: 5vw;
 			}
 				
 			#settings {
@@ -21,6 +21,13 @@
 				top: 2%;
 				left: 2%;
 				width: 30%
+			}
+			
+			#singleTimePanel {
+				position: fixed;
+				top: 2%;
+				left: 35%;
+				width: 20%
 			}
 			
 			input {
@@ -39,7 +46,10 @@
 		<div id="timeDisplay">this is where the RP time should display</div>
 	</div>
 	
-	<div id="settings"><div class="option">
+	<div id="settings">
+		<b>Settings:</b>
+		
+		<div class="option">
 			Days per year:
 			<input type="number" id="daysPerYear" value="30"></input><br>
 		</div>
@@ -55,5 +65,25 @@
 		</div>
 		
 		<input type="button" onclick="setSettings();" value="Set Settings"></input>
+	</div>
+	
+	<div id="singleTimePanel">
+		<b>Get RP time at...</b>
+		
+		<div class="option">
+			IRL Date:
+			<input type="date" id="singleDate"></input><br>
+		</div>
+		
+		<div class="option">
+		IRL Time:
+			<input type="time" id="singleTime" value="00:00"></input><br>
+		</div>
+		
+		<div class="option">
+			<input type="button" onclick="getSingleRPTime()" value="Get RP Time"></input><br>
+		</div>	
+			
+		<p id="singleRPTimeDisplay"></p>
 	</div>
 </body>

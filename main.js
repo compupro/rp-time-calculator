@@ -1,7 +1,7 @@
 //set default values
-var daysPerYear = 30;
-var lastDateChange = 1527811200000;
-var lastDateEpoch = 1041379200000;
+var daysPerYear = 14;
+var lastDateChange = 1532908800000; //JS time adds three zeroes to UNIX time
+var lastDateEpoch = 1104537600000;
 
 function setSettings(){
 	daysPerYear = document.getElementById("daysPerYear").value;

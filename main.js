@@ -1,6 +1,6 @@
 //set default values
 var daysPerYear = 14;
-var lastDateChange = 1532908800000; //JS time adds three zeroes to UNIX time
+var lastDateChange = 1533081600000; //JS time adds three zeroes to UNIX time
 var lastDateEpoch = 1104537600000;
 
 function setSettings(){

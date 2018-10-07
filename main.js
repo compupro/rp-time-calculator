@@ -1,7 +1,13 @@
-//set default values
-var daysPerYear = 14;
-var lastDateChange = 1533081600000; //JS time adds three zeroes to UNIX time
-var lastDateEpoch = 1104537600000;
+//set values according to the URL parameters if it exists, using defaults if they don't
+var pageUrl = new URLSearchParams(window.location.search);
+var daysPerYear = pageUrl.get("daysperyear") ? pageUrl.get("daysperyear")/1 : 14;
+var lastDateChange = pageUrl.get("lastdatechange") ? pageUrl.get("lastdatechange")/1 : 1533081600000; //JS time adds three zeroes to UNIX time
+var lastDateEpoch = pageUrl.get("lastdateepoch") ? pageUrl.get("lastdateepoch")/1 : 1104537600000;
+
+//change the HTML elements to reflect the values
+document.getElementById("daysPerYear").value = daysPerYear;
+document.getElementById("lastDateChange").value = new Date(lastDateChange).toISOString().split("T")[0];
+document.getElementById("lastDateEpoch").value = new Date(lastDateEpoch).toISOString().split("T")[0];
 
 function setSettings(){
 	daysPerYear = document.getElementById("daysPerYear").value;
@@ -15,8 +21,8 @@ function getTimeOf(irlDate){
 
 function setTime(){
 	var display = document.getElementById("timeDisplay");
-	var rpUnixTime = getTimeOf(Date.now());
-	display.innerHTML = "The RP date and time is<br>" + rpUnixTime.toGMTString();
+	var rpJSTime = getTimeOf(Date.now());
+	display.innerHTML = "The RP date and time is<br>" + rpJSTime.toGMTString();
 }
 
 function getSingleRPTime(){

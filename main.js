@@ -1,5 +1,5 @@
 //set values according to the URL parameters if it exists, using defaults if they don't
-var pageUrl = new URLSearchParams(window.location.search);
+var pageUrl = new URLSearchParams(location.search);
 var daysPerYear = pageUrl.get("daysperyear") ? pageUrl.get("daysperyear")/1 : 14;
 var lastDateChange = pageUrl.get("lastdatechange") ? pageUrl.get("lastdatechange")/1 : 1533081600000; //JS time adds three zeroes to UNIX time
 var lastDateEpoch = pageUrl.get("lastdateepoch") ? pageUrl.get("lastdateepoch")/1 : 1104537600000;
@@ -20,7 +20,7 @@ function exportSettings(){
 	paramString += "daysperyear=" + daysPerYear;
 	paramString += "&lastdatechange=" + lastDateChange;
 	paramString += "&lastdateepoch=" + lastDateEpoch;
-	window.prompt("Copy the following link:", window.location.pathname + paramString);
+	window.prompt("Copy the following link:", [location.protocol, "//", location.host, location.pathname].join('') + paramString);
 }
 
 function getTimeOf(irlDate){	

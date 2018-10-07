@@ -1,4 +1,5 @@
 <head>
+	<meta charset="utf-8">
 	<title>RP Time Calculator</title>
 	<style>
 			body {
@@ -28,6 +29,13 @@
 				top: 2%;
 				left: 35%;
 				width: 25%
+			}
+			
+			#exportPanel {
+				position: fixed;
+				top: 2%;
+				left: 63%;
+				width: 19%
 			}
 			
 			input {
@@ -89,6 +97,11 @@
 		</div>	
 
 		<p id="singleRPTimeDisplay"></p>
+	</div>
+	
+	<div id="exportPanel">
+		<b>Direct link to current settings</b><br>
+		<input type="button" onclick="exportSettings()" value="Get Link"></input>
 	</div>
 	
 	<script type="text/javascript" src="main.js"></script>

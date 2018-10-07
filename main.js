@@ -15,6 +15,14 @@ function setSettings(){
 	lastDateEpoch = new Date(document.getElementById("lastDateEpoch").value)/1;
 }
 
+function exportSettings(){
+	var paramString = "?";
+	paramString += "daysperyear=" + daysPerYear;
+	paramString += "&lastdatechange=" + lastDateChange;
+	paramString += "&lastdateepoch=" + lastDateEpoch;
+	window.prompt("Copy the following link:", window.location.pathname + paramString);
+}
+
 function getTimeOf(irlDate){	
 	return new Date(Math.floor((365/daysPerYear)*((irlDate)-lastDateChange)+lastDateEpoch));
 }

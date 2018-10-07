@@ -22,8 +22,10 @@ function setTime(){
 function getSingleRPTime(){
 	var singleDisplay = document.getElementById("singleRPTimeDisplay");
 	var singleIRLTime = document.getElementById("singleTime").value.split(":");
-	singleIRLTime = parseInt(singleIRLTime[0]*60) + parseInt(singleIRLTime[1]); //get selected time in minutes
-	singleIRLTime = new Date((new Date(document.getElementById("singleDate").value)/1) + singleIRLTime*60000 + (new Date().getTimezoneOffset()*60000))/1; //create a date using selected time in milliseconds plus selected time converted to milliseconds plus timezone offset converted to milliseconds
+	singleIRLTime = parseInt(singleIRLTime[0]*60) + parseInt(singleIRLTime[1]); //get selected IRL time in minutes
+	var singleIRLOffset = document.getElementById("singleOffset").value*3600000; //get selected IRL timezone offset and convert to milliseconds
+	
+	singleIRLTime = new Date((new Date(document.getElementById("singleDate").value)/1) + singleIRLTime*60000 + singleIRLOffset)/1; //create a date using selected time in milliseconds plus selected time converted to milliseconds plus timezone offset in milliseconds
 	singleDisplay.innerHTML = getTimeOf(singleIRLTime).toGMTString();
 }
 

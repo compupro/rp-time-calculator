@@ -23,7 +23,7 @@ function exportSettings(){
 	window.prompt("Copy the following link:", [location.protocol, "//", location.host, location.pathname].join('') + paramString);
 }
 
-function getTimeOf(irlDate){	
+function getTimeOf(irlDate){
 	return new Date(Math.floor((365/daysPerYear)*((irlDate)-lastDateChange)+lastDateEpoch));
 }
 
@@ -37,10 +37,16 @@ function getSingleRPTime(){
 	var singleDisplay = document.getElementById("singleRPTimeDisplay");
 	var singleIRLTime = document.getElementById("singleTime").value.split(":");
 	singleIRLTime = parseInt(singleIRLTime[0]*60) + parseInt(singleIRLTime[1]); //get selected IRL time in minutes
-	var singleIRLOffset = document.getElementById("singleOffset").value*3600000; //get selected IRL timezone offset and convert to milliseconds
-	
-	singleIRLTime = new Date((new Date(document.getElementById("singleDate").value)/1) + singleIRLTime*60000 + singleIRLOffset)/1; //create a date using selected time in milliseconds plus selected time converted to milliseconds plus timezone offset in milliseconds
-	singleDisplay.innerHTML = getTimeOf(singleIRLTime).toGMTString();
+    singleIRLTime *= 60000; //make it milliseconds
+	var singleIRLOffset = document.getElementById("singleOffset").value; //get selected IRL timezone in hours
+    singleIRLOffset *= 3600000; //make it milliseconds
+    singleIRLTime -= singleIRLOffset; //subtract the offset from the time to make it UTC
+
+    var singleIRLDate = document.getElementById("singleDate").value; //get the value of the date picker
+    singleIRLDate = new Date(singleIRLDate)/1; //turn it into js time (milliseconds)
+    var dateTime = new Date(singleIRLDate + singleIRLTime)/1;
+
+	singleDisplay.innerHTML = getTimeOf(dateTime).toGMTString();
 }
 
 setInterval(function(){setTime()}, 1);

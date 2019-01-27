@@ -44,6 +44,7 @@ header {
 }
 
 #timeDisplay {
+    font-family: 'Share Tech Mono', monospace;
     font-size: 5vw;
 }
 

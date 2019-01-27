@@ -1,118 +1,69 @@
 <head>
     <meta charset="utf-8">
     <title>RP Time Calculator</title>
-    <style>
-            body {
-                font-family: helvetica, sans-serif;
-            }
-            
-            #displayContainer {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100%;
-            }
-            
-            #timeDisplay {
-                font-size: 5vw;
-            }
-                
-            #settings {
-                position: fixed;
-                top: 2%;
-                left: 2%;
-                width: 30%
-            }
-            
-            #singleTimePanel {
-                position: fixed;
-                top: 2%;
-                left: 35%;
-                width: 25%
-            }
-            
-            #exportPanel {
-                position: fixed;
-                top: 2%;
-                left: 63%;
-                width: 19%
-            }
-            
-            #attribution {
-                position: fixed;
-                bottom: 2%;
-                right: 2%;
-                font-size: 2vh;
-            }
-            
-            input {
-                position: absolute;
-                right: 0;
-            }
-            
-            .option {
-                margin-bottom: 5px;
-            }
-        </style>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="index.css" />
 </head>
 <body>
+    <div id="panelContainer">
+        <div class="panel">
+            <b>Settings:</b>
+            
+            <div class="option">
+                Days per year:
+                <input type="number" id="daysPerYear" value="14"></input><br>
+            </div>
+            
+            <div class="option">
+                Last RP date change:
+                <input type="date" id="lastDateChange" value="2018-08-01"></input><br>
+            </div>
+            
+            <div class="option">
+                What the RP date changed to:
+                <input type="date" id="lastDateEpoch" value="2005-01-01"></input><br>
+            </div>
+            
+            <input type="button" onclick="setSettings();" value="Set Settings"></input>
+        </div>
+        
+        <div class="panel">
+            <b>Get RP time at...</b>
+            
+            <div class="option">
+                IRL Date:
+                <input type="date" id="singleDate"></input><br>
+            </div>
+            
+            <div class="option">
+            IRL Time:
+                <input type="time" id="singleTime" value="00:00"></input><br>
+            </div>
+            
+            <div class="option">
+            IRL Hours from GMT:
+                <input type="number" id="singleOffset" value="0" step="any"></input><br>
+            </div>
+            
+            <div class="option">
+                <input type="button" onclick="getSingleRPTime()" value="Get RP Time"></input><br>
+            </div>  
+
+            <p id="singleRPTimeDisplay"></p>
+        </div>
+        
+        <div class="panel">
+            <b>Direct link to current settings</b><br>
+            <input type="button" onclick="exportSettings()" value="Get Link"></input>
+        </div>
+    </div>
+    
     <div id="displayContainer">
         <div id="timeDisplay">this is where the RP time should display</div>
     </div>
     
-    <div id="settings">
-        <b>Settings:</b>
-        
-        <div class="option">
-            Days per year:
-            <input type="number" id="daysPerYear" value="14"></input><br>
-        </div>
-        
-        <div class="option">
-            Last RP date change:
-            <input type="date" id="lastDateChange" value="2018-08-01"></input><br>
-        </div>
-        
-        <div class="option">
-            What the RP date changed to:
-            <input type="date" id="lastDateEpoch" value="2005-01-01"></input><br>
-        </div>
-        
-        <input type="button" onclick="setSettings();" value="Set Settings"></input>
-    </div>
-    
-    <div id="singleTimePanel">
-        <b>Get RP time at...</b>
-        
-        <div class="option">
-            IRL Date:
-            <input type="date" id="singleDate"></input><br>
-        </div>
-        
-        <div class="option">
-        IRL Time:
-            <input type="time" id="singleTime" value="00:00"></input><br>
-        </div>
-        
-        <div class="option">
-        IRL Hours from GMT:
-            <input type="number" id="singleOffset" value="0" step="any"></input><br>
-        </div>
-        
-        <div class="option">
-            <input type="button" onclick="getSingleRPTime()" value="Get RP Time"></input><br>
-        </div>  
-
-        <p id="singleRPTimeDisplay"></p>
-    </div>
-    
-    <div id="exportPanel">
-        <b>Direct link to current settings</b><br>
-        <input type="button" onclick="exportSettings()" value="Get Link"></input>
-    </div>
-    
     <div id="attribution">
-        Copyright © 2018 compupro a.k.a. <a href="https://www.nationstates.net/nation=komminland">Komminland</a> - <a href="https://github.com/compupro/rp-time-calculator/blob/master/LICENSE">MIT License</a>
+        Copyright © 2019 compupro a.k.a. <a href="https://www.nationstates.net/nation=komminland">Komminland</a> - <a href="https://github.com/compupro/rp-time-calculator/blob/master/LICENSE">MIT License</a>
     </div>
     
     <script type="text/javascript" src="main.js"></script>

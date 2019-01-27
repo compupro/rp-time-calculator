@@ -5,58 +5,60 @@
     <link rel="stylesheet" type="text/css" href="index.css" />
 </head>
 <body>
-    <div id="panelContainer">
-        <div class="panel">
-            <b>Settings:</b>
-            
-            <div class="option">
-                Days per year:
-                <input type="number" id="daysPerYear" value="14"></input><br>
+    <header>
+        <div id="panelContainer">
+            <div class="panel">
+                <b>Settings:</b>
+                
+                <div class="option">
+                    Days per year:
+                    <input type="number" id="daysPerYear" value="14"></input><br>
+                </div>
+                
+                <div class="option">
+                    Last RP date change:
+                    <input type="date" id="lastDateChange" value="2018-08-01"></input><br>
+                </div>
+                
+                <div class="option">
+                    What the RP date changed to:
+                    <input type="date" id="lastDateEpoch" value="2005-01-01"></input><br>
+                </div>
+                
+                <input type="button" onclick="setSettings();" value="Set Settings"></input>
             </div>
             
-            <div class="option">
-                Last RP date change:
-                <input type="date" id="lastDateChange" value="2018-08-01"></input><br>
-            </div>
-            
-            <div class="option">
-                What the RP date changed to:
-                <input type="date" id="lastDateEpoch" value="2005-01-01"></input><br>
-            </div>
-            
-            <input type="button" onclick="setSettings();" value="Set Settings"></input>
-        </div>
-        
-        <div class="panel">
-            <b>Get RP time at...</b>
-            
-            <div class="option">
-                IRL Date:
-                <input type="date" id="singleDate"></input><br>
-            </div>
-            
-            <div class="option">
-            IRL Time:
-                <input type="time" id="singleTime" value="00:00"></input><br>
-            </div>
-            
-            <div class="option">
-            IRL Hours from GMT:
-                <input type="number" id="singleOffset" value="0" step="any"></input><br>
-            </div>
-            
-            <div class="option">
-                <input type="button" onclick="getSingleRPTime()" value="Get RP Time"></input><br>
-            </div>  
+            <div class="panel">
+                <b>Get RP time at...</b>
+                
+                <div class="option">
+                    IRL Date:
+                    <input type="date" id="singleDate"></input><br>
+                </div>
+                
+                <div class="option">
+                IRL Time:
+                    <input type="time" id="singleTime" value="00:00"></input><br>
+                </div>
+                
+                <div class="option">
+                IRL Hours from GMT:
+                    <input type="number" id="singleOffset" value="0" step="any"></input><br>
+                </div>
+                
+                <div class="option">
+                    <input type="button" onclick="getSingleRPTime()" value="Get RP Time"></input><br>
+                </div>  
 
-            <p id="singleRPTimeDisplay"></p>
+                <p id="singleRPTimeDisplay"></p>
+            </div>
+            
+            <div class="panel">
+                <b>Direct link to current settings</b><br>
+                <input type="button" onclick="exportSettings()" value="Get Link"></input>
+            </div>
         </div>
-        
-        <div class="panel">
-            <b>Direct link to current settings</b><br>
-            <input type="button" onclick="exportSettings()" value="Get Link"></input>
-        </div>
-    </div>
+    </header>
     
     <div id="displayContainer">
         <div id="timeDisplay">this is where the RP time should display</div>

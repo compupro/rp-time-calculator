@@ -12,18 +12,25 @@
                 <b>Settings:</b>
                 
                 <div class="option">
-                    Days per year:
-                    <input type="number" id="daysPerYear" value="14"></input><br>
+                    <label for="daysPerYear">Days per year:</label>
+                    <input type="number" id="daysPerYear" value="14"></input>
+                    <br>
                 </div>
                 
                 <div class="option">
-                    Last RP date change:
+                    <label for="lastDateChange">Last RP date change:</label>
                     <input type="date" id="lastDateChange" value="2018-08-01"></input><br>
                 </div>
                 
                 <div class="option">
-                    What the RP date changed to:
+                    <label for="lastDateEpoch">What the RP date changed to:</label>
                     <input type="date" id="lastDateEpoch" value="2005-01-01"></input><br>
+                </div>
+
+                <div class="option">
+                    <label for="fixedYears">Use Fixed Years:</label>
+                    <input type="checkbox" id="fixedYears" 
+                        title="This uses a formula that ensures that leap years are the same irl length as non-leap years"></input><br>
                 </div>
                 
                 <input type="button" onclick="setSettings();" value="Set Settings"></input>

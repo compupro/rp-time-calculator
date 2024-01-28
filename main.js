@@ -1,28 +1,36 @@
 //set values according to the URL parameters if it exists, using defaults if they don't
 const pageUrl = new URLSearchParams(location.search);
-let daysPerYear = pageUrl.get("daysperyear") ? pageUrl.get("daysperyear")/1 : 14;
-let lastDateChange = pageUrl.get("lastdatechange") ? pageUrl.get("lastdatechange")/1 : 1533081600000; //JS time adds three zeroes to UNIX time
-let lastDateEpoch = pageUrl.get("lastdateepoch") ? pageUrl.get("lastdateepoch")/1 : 1104537600000;
+let daysPerYear = pageUrl.get("daysperyear") ?? 14;
+let lastDateChange = pageUrl.get("lastdatechange") ?? 1533081600000; //JS time adds three zeroes to UNIX time
+let lastDateEpoch = pageUrl.get("lastdateepoch") ?? 1104537600000;
+let fixedYears = pageUrl.get("fixedyears") ?? false;
 
 //change the HTML elements to reflect the values
 document.getElementById("daysPerYear").value = daysPerYear;
 document.getElementById("lastDateChange").value = new Date(lastDateChange).toISOString().split("T")[0];
 document.getElementById("lastDateEpoch").value = new Date(lastDateEpoch).toISOString().split("T")[0];
+document.getElementById("fixedYears").checked = fixedYears;
 
-function setSettings(){
+function setSettings() {
     daysPerYear = document.getElementById("daysPerYear").value;
     lastDateChange = new Date(document.getElementById("lastDateChange").value)/1; //the /1 turns it into a number
     lastDateEpoch = new Date(document.getElementById("lastDateEpoch").value)/1;
+    fixedYears = document.getElementById("fixedYears").checked;
 }
+
+setSettings();//Stops the date from flashing
 
 function exportSettings(){
     const parameters = 
-        `?daysperYear=${daysPerYear}&lastdatechange=${lastDateChange}&lastdateepoch=${lastDateEpoch}`;
+        `?daysperYear=${daysPerYear}&lastdatechange=${lastDateChange}&lastdateepoch=${lastDateEpoch}&fixedyears=${fixedYears}`;
     const link = `${location.protocol}//${location.host}${location.pathname}`;
     window.prompt("Copy the following link:", link+parameters);
 }
 
 function getTimeOf(irlDate) {
+    if (!fixedYears) 
+        return new Date(Math.floor((365/daysPerYear)*((irlDate)-lastDateChange)+lastDateEpoch));
+
     const day = 86400000; //The length of the day
 
     const timeDifference = irlDate-lastDateChange;

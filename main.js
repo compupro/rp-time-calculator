@@ -11,20 +11,27 @@ document.getElementById("lastDateChange").value = new Date(lastDateChange).toISO
 document.getElementById("lastDateEpoch").value = new Date(lastDateEpoch).toISOString().split("T")[0];
 document.getElementById("fixedYears").checked = fixedYears;
 
+function getSettingsUrl() {
+    const parameters = `?daysperYear=${daysPerYear}&lastdatechange=${lastDateChange}&lastdateepoch=${lastDateEpoch}&fixedyears=${fixedYears}`;
+    const link = `${location.protocol}//${location.host}${location.pathname}`;
+    return link + parameters;
+}
+
 function setSettings() {
     daysPerYear = document.getElementById("daysPerYear").value;
     lastDateChange = new Date(document.getElementById("lastDateChange").value)/1; //the /1 turns it into a number
     lastDateEpoch = new Date(document.getElementById("lastDateEpoch").value)/1;
     fixedYears = document.getElementById("fixedYears").checked;
+    const parameters = 
+    `?daysperYear=${daysPerYear}&lastdatechange=${lastDateChange}&lastdateepoch=${lastDateEpoch}&fixedyears=${fixedYears}`;
+    const link = `${location.protocol}//${location.host}${location.pathname}`;
+    window.history.replaceState(null, "", getSettingsUrl());
 }
 
 setSettings();//Stops the date from flashing
 
 function exportSettings(){
-    const parameters = 
-        `?daysperYear=${daysPerYear}&lastdatechange=${lastDateChange}&lastdateepoch=${lastDateEpoch}&fixedyears=${fixedYears}`;
-    const link = `${location.protocol}//${location.host}${location.pathname}`;
-    window.prompt("Copy the following link:", link+parameters);
+    window.prompt("Copy the following link:", getSettingsUrl());
 }
 
 function getTimeOf(irlDate) {
